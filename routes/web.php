@@ -104,11 +104,11 @@ Route::prefix('tutor')->group(function () {
 
     Route::resource('/mensajes', 'MensajeController');
 
-    Route::get('/comportamiento/distinciones', 'ComportamientoController@verDistinciones');
+    Route::get('/comportamiento/distinciones', 'ComportamientoController@verDistincionesTutor');
 
-    Route::get('/comportamiento/observaciones', 'ComportamientoController@verObservaciones');
+    Route::get('/comportamiento/observaciones', 'ComportamientoController@verObservacionesTutor');
 
-    Route::get('/comportamiento/sanciones', 'ComportamientoController@verSanciones');
+    Route::get('/comportamiento/sanciones', 'ComportamientoController@verSancionesTutor');
     
 });
 
@@ -134,11 +134,11 @@ Route::prefix('alumno')->group(function () {
 
     Route::resource('/mensajes', 'MensajeController');
 
-    Route::get('/comportamiento/distinciones', 'ComportamientoController@verDistinciones');
+    Route::get('/comportamiento/distinciones', 'ComportamientoController@verDistincionesAlumno');
 
-    Route::get('/comportamiento/observaciones', 'ComportamientoController@verObservaciones');
+    Route::get('/comportamiento/observaciones', 'ComportamientoController@verObservacionesAlumno');
 
-    Route::get('/comportamiento/sanciones', 'ComportamientoController@verSanciones');
+    Route::get('/comportamiento/sanciones', 'ComportamientoController@verSancionesAlumno');
 
 });
 

@@ -24,6 +24,7 @@
 	<link href="{{asset('assets/sortable/sortable-theme-bootstrap.css')}}" rel="stylesheet" />
 	<link href="{{asset('assets/bootstrap-datepicker/css/datepicker.css')}}" rel="stylesheet" />
     <link href="{{asset('assets/jquery-icheck/skins/all.css')}}" rel="stylesheet" />
+
 	
 	
     <!-- Extra CSS Libraries Start -->
