@@ -20,16 +20,6 @@
   </div>
 
 
-@if(Auth::user()->tipo=="tutor")
-  <select class="form-control" name="seleccionarAlumno" id="seleccionarAlumno">
-    <option value="0">Seleccione el alumno</option>
-    
-    <option value="Jaimito">Jaimito</option>
-    <option value="Albertito">Albertito</option>
-
-  </select>
-@endif
-
 <div class="row">
   <div class="col-md-12">
     @if(count($observaciones)>=1)

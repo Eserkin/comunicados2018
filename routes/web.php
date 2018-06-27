@@ -90,9 +90,8 @@ Route::prefix('tutor')->group(function () {
         return view ('commons/boletin');
     });
 
-    Route::get('/calificaciones', function () {
-        return view ('commons/calificaciones');
-    });
+    Route::get('/calificaciones', 'CalificacionController@verCalificacionTutor');
+
 
 
     Route::get('/firmar', 'MensajeController@verMensajesNoFirmados');
@@ -124,9 +123,7 @@ Route::prefix('alumno')->group(function () {
         return view ('commons/boletin');
     });
 
-    Route::get('/calificaciones', function () {
-        return view ('commons/calificaciones');
-    });
+    Route::get('/calificaciones', 'CalificacionController@verCalificacionAlumno');
 
     Route::get('/calendario', function () {
         return view ('commons/calendario');

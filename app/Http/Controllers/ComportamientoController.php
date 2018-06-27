@@ -56,7 +56,7 @@ class ComportamientoController extends Controller
                 ->where('messages_types.id',5)
                 ->distinct('messages.id')
                 ->paginate(20);
-        return view ('commons/distinciones', compact('distinciones'));
+        return view ('students/distinciones', compact('distinciones'));
     }
 
     public function verSancionesTutor()
@@ -101,7 +101,7 @@ class ComportamientoController extends Controller
                 ->where('messages_types.id',7)
                 ->distinct('messages.id')
                 ->paginate(20);
-        return view ('commons/sanciones', compact('sanciones'));
+        return view ('students/sanciones', compact('sanciones'));
     }
 
     public function verObservacionesAlumno()
@@ -115,7 +115,7 @@ class ComportamientoController extends Controller
                 ->where('messages_types.id',6)
                 ->distinct('messages.id')
                 ->paginate(20);
-        return view ('commons/observaciones', compact('observaciones'));
+        return view ('students/observaciones', compact('observaciones'));
     }
 
     public function verObservacionesTutor()

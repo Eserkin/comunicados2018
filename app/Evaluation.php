@@ -9,7 +9,7 @@ class Evaluation extends Model {
      */
 
     protected $table = 'evaluations';
-    protected $fillable = ['id', 'materia_id', 'fecha', 'nota_promedio'];
+    protected $fillable = ['id', 'materia_id', 'fecha','periodo','temas','descripcion', 'nota_promedio'];
 
 
     public function subject() {

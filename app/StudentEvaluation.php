@@ -9,7 +9,7 @@ class StudentEvaluation extends Model {
      */
 
     protected $table = 'student_evaluation';
-    protected $fillable = ['alumno_id', 'evaluacion_id', 'calificacion', 'esta_aprobado?', 'fecha'];
+    protected $fillable = ['alumno_id', 'evaluacion_id', 'calificacion', 'esta_aprobacion', 'fecha','evaluacion_url'];
 
 
     public function evaluation() {

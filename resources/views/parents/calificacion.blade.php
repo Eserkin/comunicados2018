@@ -19,7 +19,7 @@
 <div class="content">
   
   <div class="page-heading">
-    <h1>EVALUACIONES</h1>
+    <h1>Calificaciones de los alumnos</h1>
   </div>
     
     <br>
