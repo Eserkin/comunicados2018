@@ -25,7 +25,9 @@ class EscuelaController extends Controller
     public function index()
     {
         $schools =DB::table('schools')
+                ->join('security_admins','security_admins.escuela_id','=','schools.id')
                 ->select('schools.*')
+                ->where('security_admins.dni',Auth::user()->dni)
                 ->paginate(20);
         return view ('\schools/listar_escuelas', compact('schools'));
     }

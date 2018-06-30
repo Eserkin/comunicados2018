@@ -44,7 +44,6 @@
 										<th>Escuela</th>
 										<th>Cargo</th>
 										<th>Estado</th>
-										<th>Admin</th>
 										<th>Editar</th>
 										<th>Alta/Baja</th>
 									</tr>
@@ -58,7 +57,6 @@
 										<th>Escuela</th>
 										<th>Cargo</th>
 										<th>Estado</th>
-										<th>Admin</th>
 										<th>Editar</th>
 										<th>Alta/Baja</th>
 									</tr>
@@ -72,22 +70,21 @@
 										<td>{{$ustaff->nombre}}.{{$ustaff->apellido}}</td>
 										<td>{{$ustaff->escuela}}</td>
 										<td>{{$ustaff->cargo}}</td>
-										<td>@if($ustaff->estado==1)
-											Activo
+										@if($ustaff->estado==1)
+											<td style="color:green">Activo</td>
 											@else
-											De baja
-											@endif
-										</td>
-										<td>{{$ustaff->admin}}</td>
+											<td style="color:red">Inactivo</td>
+										@endif
 										<td>
 											<a href="/admin/personal/editar/{{ $ustaff->dni }}" class="btn btn-success btn-sm" role="button">Editar</a>
 										</td>
 										<td>
-											<a href="/admin/personal/cambiarEstado/{{ $ustaff->dni }}" class="btn btn-success btn-sm" role="button">
+											<a href="/admin/personal/cambiarEstado/{{ $ustaff->dni }}"  role="button">
 												@if($ustaff->estado==1)
-												Dar de baja
+												<span class="btn btn-danger btn-sm">Dar de baja</span>
 												@else
-												Dar de alta
+												<span class="btn btn-success btn-sm">Dar de alta</span>
+												
 												@endif</a>
 										</td>
 									</tr>

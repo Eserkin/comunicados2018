@@ -15,7 +15,7 @@
 @section ('content')
 	<!-- Page Heading Start -->
 	<div class="page-heading">
-		<h1><i class='fa fa-envelope'></i>Editar Usuario</h1>
+		<h1><i class='fa fa-envelope'></i>Editar Personal</h1>
 	</div>
 	<!-- Page Heading End-->
 

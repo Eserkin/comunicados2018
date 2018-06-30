@@ -79,19 +79,20 @@
 										<td>{{$tutor->nivel}}</td>
 										<td>{{$tutor->aula}}</td>
 										<td>{{$tutor->turno}}</td>
-										<td> @if($tutor->estado==1)
-											Activo
+										 @if($tutor->estado==1)
+											<td style="color:green">Activo</td>
 											@else
-											De baja
-											@endif </td>
+											<td style="color:red">Inactivo</td>
+										 @endif 
 										<td>{{$tutor->admin}}</td>
 										<td>
-											<a href="/admin/alumnos/cambiarEstado/{{ $tutor->dni }}" class="btn btn-success btn-sm" role="button">
+											<a href="/admin/alumnos/cambiarEstado/{{ $tutor->dni }}" role="button">
 											@if($tutor->estado==1)
-											Dar de baja
+											<span class="btn btn-danger btn-sm">Dar de baja</span>
 											@else
-											Dar de alta
-											@endif</a>
+											<span class="btn btn-success btn-sm">Dar de alta</span>
+											@endif
+											</a>
 										</td>
 									</tr>
 									@endforeach

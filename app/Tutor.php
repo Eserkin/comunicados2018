@@ -1,13 +1,11 @@
-<?php namespace Comunicados;
+<?php
+
+namespace Comunicados;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Parent extends Model {
-
-    /**
-     * Generated
-     */
-
+class Tutor extends Model
+{
     protected $table = 'parents';
     protected $fillable = ['dni', 'tarjeta_coordenada'];
 
@@ -28,6 +26,5 @@ class Parent extends Model {
     public function studentParents() {
         return $this->hasMany(\Comunicados\StudentParent::class, 'padre_id', 'dni');
     }
-
 
 }

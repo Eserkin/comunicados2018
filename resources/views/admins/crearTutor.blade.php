@@ -18,6 +18,16 @@
 		<h1><i class='fa fa-envelope'></i>Crear Tutor</h1>
 	</div>
 	<!-- Page Heading End-->
+
+
+	  @for($a="a";$a<="g";$a++)
+        @for($n=1;$n<=5;$n++)
+          {{$prueba[$a][$n]=$a.$n}}
+        @endfor
+       @endfor
+	  
+	  <h2>{{$prueba["a"][2]}}</h2>
+
 	<!-- Your awesome content goes here -->
 	<div class="row">
 		<div class="col-md-12">
@@ -40,7 +50,7 @@
 											<select class="form-control input-invis" style="font-size:20px;"  id="alumno" name="alumno">
 											 <option value="0">seleccione</option>
 										    @foreach ($alumnos as $alumno)
-										     <option value="{{$alumno->id}}">{{$alumno->apellido}} {{$alumno->nombre}} / año-{{$alumno->grado}}/nivel-{{$alumno->nivel}}/aula-{{$alumno->aula}}/turno-{{$alumno->turno}}</option>
+										     <option value="{{$alumno->id}}">{{$alumno->apellido}}, {{$alumno->nombre}} / año-{{$alumno->grado}} / nivel-{{$alumno->nivel}} / aula-{{$alumno->aula}} / turno-{{$alumno->turno}}</option>
 										    @endforeach
 			   							</select>
 										</td>
@@ -122,7 +132,7 @@
 
 
 
-<!---------------------------------------------------------------------->
+<!---->
 	@include('layouts.footer')
 @endsection
 

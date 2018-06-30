@@ -15,6 +15,8 @@ use Comunicados\StaffSchoolCourse;
 use Comunicados\Student;
 use Comunicados\StudentParent;
 use Comunicados\School;
+use Comunicados\Tutor;
+use Comunicados\Coordenada;
 use Session;
 use Redirect;
 use Auth;
@@ -227,7 +229,9 @@ class AdminController extends Controller
                   ->join('security_admins','schools.id','=','security_admins.escuela_id')
                   ->select('students.estado','security_admins.dni as admin','students.n_matricula','users.dni','users.nombre','users.apellido','schools.nombre as escuela','courses.grado','courses.nivel','courses.aula','courses.turno')
                   ->where('security_admins.dni',Auth::user()->dni)
+                  ->distinct()
                   ->get();
+
 
           return view ('admins/alumnos', compact('alumno'));
       }
@@ -349,36 +353,64 @@ public function createTutor(){
    ->join('security_admins','security_admins.dni','=','students.admin_id')
    ->select('users.dni as id','users.nombre as nombre','users.apellido as apellido','courses.grado as grado','courses.nivel as nivel','courses.aula as aula','courses.turno as turno')
    ->where('students.estado',1)
-    ->where('students.admin_id',Auth::user()->dni)->get();
+   ->where('students.admin_id',Auth::user()->dni)->get();
 
-  return view('admins/crearTutor',compact('alumnos'));
+   $tarjeta=new Coordenada;
+   for($a="a";$a<="g";$a++){
+        for($n=1;$n<=5;$n++){
+          $tarjeta->$a.$n=rand(10,99);
+        }
+       }
+
+  return view('admins/crearTutor',compact('alumnos','tarjeta'));
 }
 
 
 public function createTutorForm(Request $request){
 
+      //Cargo la tabla Users
 
-       $tutor=new User;
-       $tutor->dni=$request->input("dni");
-       $tutor->nombre=$request->input("nombre");
-       $tutor->apellido=$request->input("apellido");
-       $tutor->sexo=$request->input("sexo");
-       $tutor->email=$request->input("email");
-       $tutor->password=Hash::make($request->input("password"));
-       $tutor->fecha_nacimiento=$request->input("nacimiento");
-       $tutor->telefono=$request->input("tel");
-       $tutor->celular=$request->input("movil");
-       $tutor->direccion=$request->input("direccion");
-       $tutor->localidad=$request->input("localidad");
-       $tutor->provincia=$request->input("provincia");
-       $tutor->foto_url=$request->input("foto_url");
-       $tutor->tipo="tutor";
+       $usuario=new User;
+       $usuario->dni=$request->input("dni");
+       $usuario->nombre=$request->input("nombre");
+       $usuario->apellido=$request->input("apellido");
+       $usuario->sexo=$request->input("sexo");
+       $usuario->email=$request->input("email");
+       $usuario->password=Hash::make($request->input("password"));
+       $usuario->fecha_nacimiento=$request->input("nacimiento");
+       $usuario->telefono=$request->input("tel");
+       $usuario->celular=$request->input("movil");
+       $usuario->direccion=$request->input("direccion");
+       $usuario->localidad=$request->input("localidad");
+       $usuario->provincia=$request->input("provincia");
+       $usuario->foto_url=$request->input("foto_url");
+       $usuario->tipo="tutor";
+       $usuario->save();
+
+       //Creo una tarjeta de coordenadas
+       $tarjeta=new Coordenada;
+       $tarjeta->vencimiento=Carbon::now()->addYear();
+             
+       for($a="a";$a<="g";$a++){
+        for($n=1;$n<=5;$n++){
+          $tarjeta->$a.$n=rand(10,99);
+        }
+       }
+
+
+       $tarjeta->save();
+
+      //Creo un tutor y le asocio la tarjeta de coordenadas
+       $tutor=new Tutor;
+       $tutor->dni=$usuario->dni;
+       $tutor->tarjeta_coordenada=$tarjeta->id;
        $tutor->save();
 
-       $dni=$tutor->dni;
-
+      //Creo la relación entre el tutor y alumnos a cargo
        $parent= new StudentParent;
-       $parent->padre_id=$dni;
+       $parent->padre_id=$usuario->dni;
+       $parent->created_at=Carbon::now();
+       $parent->updated_at=Carbon::now();
        $parent->alumno_id=$request->input("alumno");
        $parent->admin_id=Auth::user()->dni;
        $parent->estado=1;
@@ -387,4 +419,5 @@ public function createTutorForm(Request $request){
        return redirect::to('admin/tutores');
 
     }
-}//fin
+}
+//fin

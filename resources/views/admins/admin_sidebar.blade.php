@@ -77,7 +77,7 @@
                       <li><a href='/admin/consultarPermisos'><span>Consultar</span></a></li>
                   </ul>
                 </li>
-                <li class=''><a href="{!!URL::to('/admin/escuelas')!!}"><i class='fa fa-university'></i><span>Escuelas</span></a>
+                <li class=''><a href="{!!URL::to('/admin/escuelas')!!}"><i class='fa fa-university'></i><span>Datos de Escuela</span></a>
                 </li>
             </ul>
             <div class="clearfix"></div>
