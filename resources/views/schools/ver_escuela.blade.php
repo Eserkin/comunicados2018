@@ -22,7 +22,7 @@
 @section ('content')
 	            <!-- Page Heading Start -->
                 <div class="page-heading">
-                    <h1><i class='fa fa-bell-o'> </i>&nbsp;&nbsp;Ver Escuela</h1>
+                    <h1><i class='fa fa-bell-o'> </i>&nbsp;&nbsp;Ver datos de Escuelas</h1>
                 </div>
                 <!-- Page Heading End-->
                 <form class="form-horizontal">
@@ -38,7 +38,7 @@
                       <p class="form-control-static">{{ $school->id}}</p>
                     </div>
                   </div>
-				                    <div class="form-group">
+				          <div class="form-group">
                     <label class="control-label col-sm-2" for="email">PROVINCIA:</label>
                     <div class="col-sm-10">
                       <p class="form-control-static">{{ $school->provincia}}</p>
@@ -76,7 +76,7 @@
                     </div>
                   </div>
 
-				                    <div class="form-group">
+				          <div class="form-group">
                     <label class="control-label col-sm-2" for="email">MODALIDAD:</label>
                     <div class="col-sm-10">
                       <p class="form-control-static">{{ $school->modalidad}}</p>

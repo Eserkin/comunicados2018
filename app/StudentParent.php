@@ -9,7 +9,7 @@ class StudentParent extends Model {
      */
 
     protected $table = 'student_parent';
-    protected $fillable = ['alumno_id', 'padre_id'];
+    protected $fillable = ['alumno_id', 'padre_id', 'admin_id', 'estado'];
 
 
     public function parent() {

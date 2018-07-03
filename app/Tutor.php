@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Tutor extends Model
 {
     protected $table = 'parents';
-    protected $fillable = ['dni', 'tarjeta_coordenada'];
+    protected $fillable = ['dni', 'tarjeta_coordenada','estado','admin_id'];
 
 
     public function user() {

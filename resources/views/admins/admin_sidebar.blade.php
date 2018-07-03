@@ -55,16 +55,13 @@
                       <ul>
                         <li><a href="{!!URL::to('/admin/tutores')!!}"><span>Consultar</span></a></li>
                         <li><a href="{!!URL::to('/admin/crearTutor')!!}"><span>Crear</span></a></li>
+                        
                       </ul>
                     </li>
                 </ul>
                 </li>
-              <!--  <li class='has_sub'><a href="{!!URL::to('/admin/materias')!!}"><i class='fa fa-book '></i><span>Materias</span></a>
-                  <ul>
-                    <li><a href="{!!URL::to('/admin/materias')!!}"><span>Consultar</span></a></li>
-                    <li><a href="{!!URL::to('/admin/crearMaterias')!!}"><span>Crear</span></a></li>
-                  </ul>
-                </li>-->
+                <li class=''><a href="{!!URL::to('/admin/asociarTutor')!!}"><i class='fa fa-users'></i><span>Asociar Tutor-Alumno</span></a></li>
+                </li>
                 <li class='has_sub'><a href="{!!URL::to('/admin/cursos')!!}"><i class='fa fa-book '></i><span>Cursos</span></a>
                   <ul>
                     <li><a href="{!!URL::to('/admin/cursos')!!}"><span>Consultar</span></a></li>

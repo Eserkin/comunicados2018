@@ -48,6 +48,8 @@ Route::prefix('admin')->group(function () {
 		Route::get('/alumnos/cambiarEstado/{dni}', 'AdminController@changeStateTutor');
 		Route::get('/crearTutor', 'AdminController@createTutor');
 		Route::post('/crearTutor','AdminController@createTutorForm');
+        Route::get('/asociarTutor','AdminController@verAsociarTutor');
+        Route::post('/asociarTutor','AdminController@crearAsociarTutor');
 
 
 		Route::get('/rolesypermisos', 'AdminController@setearPermisos');

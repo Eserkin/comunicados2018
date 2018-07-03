@@ -390,20 +390,23 @@ public function createTutorForm(Request $request){
        //Creo una tarjeta de coordenadas
        $tarjeta=new Coordenada;
        $tarjeta->vencimiento=Carbon::now()->addYear();
-             
-       for($a="a";$a<="g";$a++){
-        for($n=1;$n<=5;$n++){
-          $tarjeta->$a.$n=rand(10,99);
-        }
-       }
-
-
+       $tarjeta->a1=rand(10,99);$tarjeta->a2=rand(10,99);$tarjeta->a3=rand(10,99);$tarjeta->a4=rand(10,99);$tarjeta->a5=rand(10,99);$tarjeta->b1=rand(10,99);$tarjeta->b2=rand(10,99);$tarjeta->b3=rand(10,99);$tarjeta->b4=rand(10,99);$tarjeta->b5=rand(10,99);$tarjeta->c1=rand(10,99);$tarjeta->c2=rand(10,99);$tarjeta->c3=rand(10,99);$tarjeta->c4=rand(10,99);$tarjeta->c5=rand(10,99);$tarjeta->d1=rand(10,99);$tarjeta->d2=rand(10,99);$tarjeta->d3=rand(10,99);$tarjeta->d4=rand(10,99);$tarjeta->d5=rand(10,99);$tarjeta->e1=rand(10,99);$tarjeta->e2=rand(10,99);$tarjeta->e3=rand(10,99);$tarjeta->e4=rand(10,99);$tarjeta->e5=rand(10,99);$tarjeta->f1=rand(10,99);$tarjeta->f2=rand(10,99);$tarjeta->f3=rand(10,99);$tarjeta->f4=rand(10,99);$tarjeta->f5=rand(10,99);$tarjeta->g1=rand(10,99);$tarjeta->g2=rand(10,99);$tarjeta->g3=rand(10,99);$tarjeta->g4=rand(10,99);$tarjeta->g5=rand(10,99);
        $tarjeta->save();
-
+             
+      /*     
+      for($a="a";$a<="g";$a++){
+        for($n=1;$n<=5;$n++){
+          $tarjeta->a.$n=rand(10,99);
+          $tarjeta->save();
+        }
+      }
+      */
+     
       //Creo un tutor y le asocio la tarjeta de coordenadas
        $tutor=new Tutor;
        $tutor->dni=$usuario->dni;
        $tutor->tarjeta_coordenada=$tarjeta->id;
+       $tutor->admin_id=Auth::user()->dni;
        $tutor->save();
 
       //Creo la relación entre el tutor y alumnos a cargo
@@ -419,5 +422,41 @@ public function createTutorForm(Request $request){
        return redirect::to('admin/tutores');
 
     }
+
+public function verAsociarTutor(){
+        $alumnos =DB::table('users')
+         ->join('students', 'users.dni', '=', 'students.dni')
+         ->join('courses','courses.id','=','students.curso')
+         ->join('security_admins','security_admins.dni','=','students.admin_id')
+         ->select('users.dni as id','users.nombre as nombre','users.apellido as apellido','courses.grado as grado')
+         ->where('students.estado',1)
+         ->where('students.admin_id',Auth::user()->dni)->get();
+
+         $tutores=DB::table('users')
+         ->join('parents', 'users.dni', '=', 'parents.dni')
+         ->join('security_admins','security_admins.dni','=','parents.admin_id')
+         ->select('users.dni as id','users.nombre as nombre','users.apellido as apellido')
+         ->where('parents.estado',1)
+         ->where('parents.admin_id',Auth::user()->dni)->get();
+
+      return view('admins/asociarTutor',compact('alumnos','tutores'));
+}
+
+public function crearAsociarTutor(Request $request){
+
+      $asociar=new StudentParent;
+      $asociar->padre_id=$request->input("tutor");
+      $asociar->alumno_id=$request->input("alumno");
+      $asociar->created_at=Carbon::now();
+      $asociar->updated_at=Carbon::now();
+      $asociar->admin_id=Auth::user()->dni;
+      $asociar->estado=1;
+      $asociar->save();
+
+      return redirect::to('admin/asociarTutor');
+}
+
+
+
 }
 //fin

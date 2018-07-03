@@ -19,7 +19,7 @@
 	</div>
 	<!-- Page Heading End-->
 
-
+<!--
 	  @for($a="a";$a<="g";$a++)
         @for($n=1;$n<=5;$n++)
           {{$prueba[$a][$n]=$a.$n}}
@@ -27,6 +27,7 @@
        @endfor
 	  
 	  <h2>{{$prueba["a"][2]}}</h2>
+-->
 
 	<!-- Your awesome content goes here -->
 	<div class="row">
