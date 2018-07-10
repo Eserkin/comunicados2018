@@ -24,5 +24,4 @@ class StaffSchoolCourse extends Model {
         return $this->belongsTo(\Comunicados\Course::class, 'curso_id', 'id');
     }
 
-
 }

@@ -57,7 +57,8 @@ Route::prefix('admin')->group(function () {
 		Route::get('/consultarPermisos', 'AdminController@consultarPermisos');
 
 	Route::get('/escuelas', 'EscuelaController@index');
-	Route::get('/escuelas/show/{id}', 'EscuelaController@show');
+    Route::post('/escuelas', 'EscuelaController@actualizarEscuela');
+
 
 	Route::get('/materias', 'MateriaController@index');
 	Route::get('/materias/show/{id}', 'MateriaController@show');
@@ -71,9 +72,6 @@ Route::prefix('admin')->group(function () {
 
     Route::resource('/usuarios', 'UsuarioController');
     Route::resource('/materias', 'MateriaController');
-
-    Route::resource('/roles', 'RoleController');
-    Route::resource('/escuelas', 'EscuelaController');
 });
 
 Route::prefix('tutor')->group(function () {
@@ -141,6 +139,12 @@ Route::prefix('alumno')->group(function () {
 
 });
 
+//Rutas AJAX -------------------
+Route::get('/asistencias/escuela/{escuela_id}', 'AsistenciaController@seleccionarCursos');
+Route::get('/asistencias/curso/{curso_id}', 'AsistenciaController@mostrarAlumnos');
+Route::get('/asistencias/materia/{materia_id}', 'AsistenciaController@seleccionarMateria');
+//-----------------
+
 Route::prefix('personal')->group(function () {
 
 
@@ -156,7 +160,10 @@ Route::prefix('personal')->group(function () {
 
     Route::resource('/temario', 'TemarioController');
 
-    Route::resource('/asistencias', 'AsistenciaController');
+    Route::get('/asistencias', 'AsistenciaController@verTomarAsistencias');
+
+    Route::post('/asistencias', 'AsistenciaController@cargarAsistencias');
+
 
     Route::resource('/calendario', 'CalendarioController');
 

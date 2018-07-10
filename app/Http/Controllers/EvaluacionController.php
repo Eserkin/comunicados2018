@@ -3,6 +3,7 @@
 namespace Comunicados\Http\Controllers;
 
 use Illuminate\Http\Request;
+use School;
 
 class EvaluacionController extends Controller
 {

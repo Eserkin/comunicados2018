@@ -16,26 +16,18 @@
 @section ('content')
 <!-- Page Heading Start -->
 <div class="page-heading">
-  <h1><i class='fa fa-pencil'> </i>&nbsp;&nbsp;Crear Evaluación</h1>
+  <h1><i class='fa fa-pencil'> </i>&nbsp;&nbsp;Subir calificación</h1>
 </div>
 <!-- Page Heading End-->
 <div id="basic-form">
   <form role="form">
     <div class="form-group">
-      <label class="control-label">Escuela:</label>
+      <label class="control-label">Escuela y curso:</label>
       <select class="form-control ">
-        <option>Seleccione Escuela ...</option>
-        <option>Escuela nº 14</option>
-        <option>Escuela nº 23</option>
-      </select>
-    </div>
-    <div class="form-group">
-      <label class="control-label">Curso:</label>
-      <select class="form-control">
-        <option>Seleccione Curso ...</option>
-        <option>6 grado- A. Turno Mañana</option>
-        <option>6 grado- B. Turno Tarde</option>
-        <option>7 grado- A. Turno Mañana</option>
+        <option>Seleccione ...</option>
+        <option>Escuela nº 14- 6 grado A. Turno Mañana</option>
+        <option>Escuela nº 14- 6 grado B. Turno Tarde</option>
+        <option>Escuela nº 23- 7 grado A. Turno Mañana</option>
       </select>
     </div>
     <div class="form-group">

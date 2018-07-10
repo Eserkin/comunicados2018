@@ -24,81 +24,39 @@ class EscuelaController extends Controller
 
     public function index()
     {
-        $schools =DB::table('schools')
+        $school =DB::table('schools')
                 ->join('security_admins','security_admins.escuela_id','=','schools.id')
-                ->select('schools.*')
+                ->select('*')
                 ->where('security_admins.dni',Auth::user()->dni)
-                ->paginate(20);
-        return view ('\schools/listar_escuelas', compact('schools'));
-    }
+                ->first();
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        return view('\schools/crear_escuela');
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        $school= new School($request->all());
-        $school->save();
-        dd('Escuela creada');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        $school = School::find($id);
         return view ('\schools/ver_escuela', compact('school'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+    public function actualizarEscuela(Request $request)
     {
-        //
+        if($request->ajax()){
+        $schoolID =$request->input("escuelaId");
+
+        $schoolA=School::find($schoolID);
+
+        $schoolA->modalidad=$request->input('modalidad');
+        $schoolA->nivel=$request->input('nivel');
+        $schoolA->numero=$request->input('numero');
+        $schoolA->nombre=$request->input('nombre');
+        $schoolA->direccion=$request->input('direccion');
+        $schoolA->localidad=$request->input('localidad');
+        $schoolA->provincia=$request->input('provincia');
+        $schoolA->telefono=$request->input('telefono');
+        $schoolA->fax=$request->input('fax');
+        $schoolA->email=$request->input('email');
+        $schoolA->pagina_web=$request->input('pagina_web');
+        $schoolA->save();
+        }
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
+
+
 	
 }

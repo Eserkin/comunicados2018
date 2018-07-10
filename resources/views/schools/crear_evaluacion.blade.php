@@ -22,18 +22,10 @@
 <div id="basic-form">
   <form role="form">
     <div class="form-group">
-      <label class="control-label">Escuela:</label>
-      <select class="form-control ">
-        <option>Seleccione Escuela ...</option>
-        <option>Escuela nº 14</option>
-        <option>Escuela nº 23</option>
-      </select>
-    </div>
-    <div class="form-group">
-      <label class="control-label">Curso:</label>
+      <label class="control-label">Escuela y Curso:</label>
       <select class="form-control">
-        <option>Seleccione Curso ...</option>
-        <option>6 grado- A. Turno Mañana</option>
+        <option>Seleccione ...</option>
+        <option>Escuala Peregrino- 6 grado A. Turno Mañana</option>
         <option>6 grado- B. Turno Tarde</option>
         <option>7 grado- A. Turno Mañana</option>
       </select>

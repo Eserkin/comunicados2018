@@ -9,7 +9,7 @@ class StudentCourseSubject extends Model {
      */
 
     protected $table = 'student_course_subject';
-    protected $fillable = ['alumno_id', 'materia_id', 'curso_id', 'fecha', 'asiste?', 'justificativo_url'];
+    protected $fillable = ['alumno_id', 'materia_id', 'curso_id', 'fecha', 'asiste', 'justificativo_url'];
 
 
     public function course() {

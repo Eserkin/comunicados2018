@@ -21,6 +21,15 @@
   <div class="row">
 
     <div class="col-md-4">
+      <div class="form-group">
+        <label class="control-label">Escuela y curso:</label>
+        <select class="form-control ">
+          <option>Seleccione ...</option>
+          <option>Escuela nº 14- 6 grado A. Turno Mañana</option>
+          <option>Escuela nº 14- 6 grado B. Turno Tarde</option>
+          <option>Escuela nº 23- 7 grado A. Turno Mañana</option>
+        </select>
+      </div>
 
       <div class="form-group">
         <label class="control-label">Fecha:</label>
@@ -28,25 +37,8 @@
           <input type="text" class="form-control datepicker-input" data-mask="99-99-9999" placeholder="mm-dd-yyyy">
         </div>
       </div>
-      <div class="form-group">
-              <label class="control-label">Escuela:</label>
-                <select class="form-control ">
-                  <option>Seleccione Escuela ...</option>
-                  <option>Escuela nº 14</option>
-                  <option>Escuela nº 23</option>
-                </select>
-      </div>
-      <div class="form-group">
-              <label class="control-label">Curso:</label>
-                <select class="form-control">
-                  <option>Seleccione Curso ...</option>
-                  <option>6 grado- A. Turno Mañana</option>
-                  <option>6 grado- B. Turno Tarde</option>
-                  <option>7 grado- A. Turno Mañana</option>
-                </select>
-      </div>
-
     </div>
+
     <div class="col-md-8">
       <div class="widget">
         <div class="widget-content">
@@ -60,7 +52,7 @@
                     <thead>
                       <tr>
                         <th data-sorted="false">Nombre completo</th>
-                        <th  data-sortable="false" data-sorted="false"> <div class="icheckbox_square-aero" aria-checked="false" aria-disabled="false" style=""><input type="checkbox" class="rows-check" style=""><ins class="iCheck-helper"></ins></div>Asistencia</th>  
+                        <th  data-sortable="false" data-sorted="false">¿Asistió a clases?</th>  
                       </tr>
                     </thead>
                     

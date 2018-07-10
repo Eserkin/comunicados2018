@@ -20,5 +20,4 @@ class Course extends Model {
         return $this->hasMany(\Comunicados\StudentCourseSubject::class, 'curso_id', 'id');
     }
 
-
 }
