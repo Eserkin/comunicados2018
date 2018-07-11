@@ -49,7 +49,7 @@
         <div id="sidebar-menu">
             <ul>
                 <li><a href="{!!URL::to('/personal/evaluaciones/crear')!!}"><i class='fa fa-pencil-square-o'></i><span>Crear Evaluaciones</span></a></li>
-                <li><a href="{!!URL::to('/personal/calificaciones')!!}"><i class='fa fa-sort-numeric-desc'></i><span>Cargar calificaciones</span></a></li>
+                <li><a href="{!!URL::to('/personal/calificaciones/subir')!!}"><i class='fa fa-sort-numeric-desc'></i><span>Cargar calificaciones</span></a></li>
 {{--                 
                 <li><a href="{!!URL::to('/personal')!!}"><i class='fa fa-book'></i><span>Temario</span></a></li> 
 --}}

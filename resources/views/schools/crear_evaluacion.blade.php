@@ -23,7 +23,7 @@
 <div id="basic-form">
 
   <!-- Comienzo de formulario-->
-  <form class="form-horizontal" role="form" action="crear" method="POST" id"formCrearEvaluacion">
+  <form role="form" action="crear" method="POST" id"formCrearEvaluacion">
 
     <div class="col-md-5">
 
@@ -80,5 +80,5 @@
 @endsection
 
 @section ('javascript')
-<script type="text/javascript" src="{{ URL::asset('js/common.js') }}"></script>
+<script type="text/javascript" src="{{ URL::asset('js/select_escuela.js') }}"></script>
 @endsection

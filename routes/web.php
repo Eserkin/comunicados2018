@@ -140,9 +140,14 @@ Route::prefix('alumno')->group(function () {
 });
 
 //Rutas AJAX -------------------
+Route::get('/asistencias/escuelaSelect', 'AsistenciaController@cargarEscuelas');
 Route::get('/asistencias/escuela/{escuela_id}', 'AsistenciaController@seleccionarCursos');
-Route::get('/asistencias/curso/{curso_id}', 'AsistenciaController@mostrarAlumnos');
+Route::get('/asistencias/curso/{curso_id}', 'AsistenciaController@seleccionarAlumnoEval');
 Route::get('/asistencias/materia/{materia_id}', 'AsistenciaController@seleccionarMateria');
+
+Route::get('/subirCalificacion/evaluacion/{materia_id}', 'CalificacionController@seleccionarEvaluacion');
+Route::get('/subirCalificacion/alumnos/{curso_id}', 'CalificacionController@seleccionarAlumnoEval');
+
 //-----------------
 
 Route::prefix('personal')->group(function () {
@@ -154,7 +159,9 @@ Route::prefix('personal')->group(function () {
 
     Route::resource('/mensajes', 'MensajeController');
 
-    Route::get('/calificaciones', 'CalificacionController@create');
+    Route::get('/calificaciones/subir', 'CalificacionController@subirCalificacion');
+
+    Route::post('/calificaciones/subir', 'CalificacionController@cargarCalificacion');
 
     Route::get('/evaluaciones/crear', 'EvaluacionController@verCrearEvaluacion');
 

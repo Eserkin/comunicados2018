@@ -61,7 +61,7 @@
 
 @section ('javascript')
 <!-- Page Specific JS Libraries -->
-<script type="text/javascript" src="{{ URL::asset('js/common.js') }}"></script>
+<script type="text/javascript" src="{{ URL::asset('js/select_escuela.js') }}"></script>
 <script type="text/javascript">
   
     $("#seleccionCurso").on('change', function (e) {
