@@ -156,10 +156,10 @@ Route::prefix('personal')->group(function () {
 
     Route::get('/calificaciones', 'CalificacionController@create');
 
-    Route::resource('/evaluaciones', 'EvaluacionController');
+    Route::get('/evaluaciones/crear', 'EvaluacionController@verCrearEvaluacion');
 
-    Route::resource('/temario', 'TemarioController');
-
+    Route::post('/evaluaciones/crear', 'EvaluacionController@crearEvaluacion');
+    
     Route::get('/asistencias', 'AsistenciaController@verTomarAsistencias');
 
     Route::post('/asistencias', 'AsistenciaController@cargarAsistencias');

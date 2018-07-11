@@ -19,58 +19,66 @@
   <h1><i class='fa fa-pencil'> </i>&nbsp;&nbsp;Crear Evaluación</h1>
 </div>
 <!-- Page Heading End-->
+
 <div id="basic-form">
-  <form role="form">
-    <div class="form-group">
-      <label class="control-label">Escuela y Curso:</label>
-      <select class="form-control">
-        <option>Seleccione ...</option>
-        <option>Escuala Peregrino- 6 grado A. Turno Mañana</option>
-        <option>6 grado- B. Turno Tarde</option>
-        <option>7 grado- A. Turno Mañana</option>
-      </select>
-    </div>
-    <div class="form-group">
-      <label class="control-label">Fecha de la evaluación:</label>
-      <div>
-        <input type="text" class="form-control datepicker-input" data-mask="99-99-9999" placeholder="mm-dd-yyyy">
-      </div>
-    </div>
-    <div class="form-group">
-      <label for="temas" class="control-label">Temas:</label>
-      <div>
-        <input type="text" class="form-control" id="temas" placeholder="trigonometria 1, calculos">
-        <p class="help-block">Ingrese los temas separados por comas.</p>
-      </div>
-    </div>
-    <div class="form-group">
-      <label for="descripcion">Breve descripción</label>
-      <textarea name="descripcion" style="width:100%; height:100px; display:block" class="form-control"></textarea>
-    </div>
-    <div class="form-group">
-      <label class="control-label">Notificar</label>
-      <div >
-        <div class="checkbox">
-          <label class="">
-            <div class="icheckbox_square-aero" aria-checked="false" aria-disabled="false" style="position: relative;"><input type="checkbox" value="" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div>
-            Enviar mensaje a todos los alumnos con la descripción de la evaluación.
-          </label>
+
+  <!-- Comienzo de formulario-->
+  <form class="form-horizontal" role="form" action="crear" method="POST" id"formCrearEvaluacion">
+
+    <div class="col-md-5">
+
+      @include('schools.select_escuela')
+
+      <div class="form-group">
+        <label class="control-label">Fecha:</label>
+        <div>
+          <input type="text" name="fecha" class="form-control datepicker-input" data-mask="99-99-9999" placeholder="mm-dd-yyyy">
         </div>
       </div>
-      <div >
-        <div class="checkbox">
-          <label class="">
-            <div class="icheckbox_square-aero" aria-checked="false" aria-disabled="false" style="position: relative;"><input type="checkbox" value="" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div>
-            Enviar mensaje a todos los padres o tutores.
-          </label>
+      <div class="form-group">
+        <label for="temas" class="control-label">Temas: </label>
+        <div>
+          <input type="text" class="form-control" name="temas" placeholder="trigonometria 1, calculos ---- (separados por comas):">
         </div>
       </div>
     </div>
-    <br><br>
-    <button type="submit" class="btn btn-danger">Crear evaluación</button>
+    <!-- Fin de 5-col-->
+    <div class="col-md-7">
+      <div class="form-group">
+        <label for="descripcion">Breve descripción</label>
+        <textarea name="descripcion" id="descripcion"  style="width:100%; height:100px; display:block" class="form-control"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="opciones" class="control-label">Notificar: </label>
+        <div>
+          <div class="checkbox">
+            <label class="">
+              <div class="icheckbox_square-aero" aria-checked="false" aria-disabled="false"><input type="checkbox" name="enviar_alumnos" value="alumnos"><ins class="iCheck-helper"></ins></div>
+              Enviar mensaje a todos los alumnos con los detalles de la evaluación.
+            </label>
+          </div>
+        </div>
+        <div>
+          <div class="checkbox">
+            <label class="">
+              <div class="icheckbox_square-aero" aria-checked="false" aria-disabled="false"><input type="checkbox" name="enviar_tutores" value="tutores"><ins class="iCheck-helper"></ins></div>
+              Incluir también a los padres/ tutores.
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <input type="hidden" id="_token" name="_token" value="{{ csrf_token() }}">
+        <button type="submit" class="btn btn-danger">Crear evaluación</button>
+      </div>
+    </div>
+    <!-- Fin de 7-col-->
   </form>
+  <!-- Fin de formulario-->
 </div>
-@include('layouts.footer')
+<div class="col-md-12">@include('layouts.footer')</div>
 @endsection
+
 @section ('javascript')
+<script type="text/javascript" src="{{ URL::asset('js/common.js') }}"></script>
 @endsection
