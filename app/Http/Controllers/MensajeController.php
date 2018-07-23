@@ -123,8 +123,45 @@ class MensajeController extends Controller
                 ->select('messages.id','messages.titulo','messages.asunto','messages.mensaje','messages.adjunto','messages.created_at','messages_types.id as tipo')
                 ->where('message_recipient.recibe_dni',Auth::user()->dni)
                 ->where('messages_types.requiere_firma?',1)
+                ->where('message_recipient.fue_firmado',0)
                 ->distinct('messages.id')
                 ->paginate(20);
         return view ('parents/firmar', compact('sinFirmar'));
+    }
+
+    public function validarFirma(Request $request)
+    {
+        //Se selecciona la tarjeta de coordenadas asociada al padre o tutor
+
+        $tarjetaCoordenadas =DB::table('coordenadas')
+                ->join('parents', 'parents.tarjeta_coordenada', '=', 'coordenadas.id')
+                ->select('*')
+                ->where('parents.dni',Auth::user()->dni)
+                ->distinct('coordenadas.id')
+                ->first();
+
+        $estado=false;
+
+        $lbl1=(string)$request->lblCoord1;
+
+        $lbl2=(string)$request->lblCoord2;
+
+        if(isset($tarjetaCoordenadas->$lbl1)&isset($tarjetaCoordenadas->$lbl2)){
+            if($tarjetaCoordenadas->$lbl1==$request->val1 & $tarjetaCoordenadas->$lbl2==$request->val2){
+                
+                $estado=true;
+                //En el caso de que las coordenadas sean correctas se actualiza el mensaje en la BD a firmado
+                DB::table('message_recipient')
+                ->where('mensaje_id', $request->current_msj_id)
+                ->where('recibe_dni', Auth::user()->dni)
+                ->update(['fue_firmado' => 1]);
+            }else{
+
+                $estado=false;
+
+            }
+        }
+        
+        return response()->json($estado);
     }
 }

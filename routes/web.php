@@ -74,13 +74,19 @@ Route::prefix('admin')->group(function () {
     Route::resource('/materias', 'MateriaController');
 });
 
+//Rutas AJAX para Tutor  -------------------
+
+Route::get('/asistencias/alumnoSelect', 'AsistenciaController@seleccionarAlumnoTutor');
+Route::get('/asistencias/vistaTutor/{alumno_id}', 'AsistenciaController@cargarAsistenciasTutor');
+
+Route::post('/validarFirma', 'MensajeController@validarFirma');
+//-----------------
+
 Route::prefix('tutor')->group(function () {
 
     Route::get('/', function () {
         return view ('parents/index');
     });
-
-    Route::resource('/asistencias', 'AsistenciaController' );
 
     Route::get('/justificativo',function(){
 		return view ('parents/justificativo');
@@ -94,7 +100,7 @@ Route::prefix('tutor')->group(function () {
 
 
 
-    Route::get('/firmar', 'MensajeController@verMensajesNoFirmados');
+    Route::get('/noFirmados', 'MensajeController@verMensajesNoFirmados');
 
 
     Route::get('/calendario', function () {
@@ -102,6 +108,8 @@ Route::prefix('tutor')->group(function () {
     });
 
     Route::resource('/mensajes', 'MensajeController');
+
+    Route::get('/asistencias',function(){return view ('parents/verAsistencia');});
 
     Route::get('/comportamiento/distinciones', 'ComportamientoController@verDistincionesTutor');
 
@@ -139,7 +147,7 @@ Route::prefix('alumno')->group(function () {
 
 });
 
-//Rutas AJAX -------------------
+//Rutas AJAX para Personal-------------------
 Route::get('/asistencias/escuelaSelect', 'AsistenciaController@cargarEscuelas');
 Route::get('/asistencias/escuela/{escuela_id}', 'AsistenciaController@seleccionarCursos');
 Route::get('/asistencias/curso/{curso_id}', 'AsistenciaController@seleccionarAlumnoEval');
@@ -166,8 +174,8 @@ Route::prefix('personal')->group(function () {
     Route::get('/evaluaciones/crear', 'EvaluacionController@verCrearEvaluacion');
 
     Route::post('/evaluaciones/crear', 'EvaluacionController@crearEvaluacion');
-    
-    Route::get('/asistencias', 'AsistenciaController@verTomarAsistencias');
+
+    Route::get('/asistencias',function(){return view ('schools/tomar_asistencias');});
 
     Route::post('/asistencias', 'AsistenciaController@cargarAsistencias');
 

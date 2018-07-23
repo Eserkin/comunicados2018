@@ -17,7 +17,7 @@
     <h1>Tomar Asistencias.</h1>
   </div>
   <hr>
-  <form class="form-horizontal" role="form" action="asistencias" method="POST" id"form2">
+  <form  role="form" action="asistencias" method="POST" id"form2">
     <div class="row">
       <div class="col-md-4">
 

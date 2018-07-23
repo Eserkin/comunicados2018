@@ -23,17 +23,6 @@ class AsistenciaController extends Controller
         $this->middleware('auth');
     }
 
-    public function verTomarAsistencias()
-    {
-        $escuelas= DB::table('schools')
-                  ->join ('staff_school_courses', 'schools.id', '=', 'staff_school_courses.escuela_id')
-                  ->select('schools.id', 'schools.nombre', 'schools.numero')
-                  ->where('staff_school_courses.dni',Auth::user()->dni)
-                  ->distinct()
-                  ->get();
-
-        return view ('schools/tomar_asistencias', compact('escuelas')); 
-    }
 
 
     public function cargarEscuelas(Request $request){
@@ -91,13 +80,11 @@ class AsistenciaController extends Controller
                   ->get();
 
             return response()->json($alumnos);
-        }
-       
+        }   
     } 
 
     public function cargarAsistencias(Request $request )
     {
-
         //if($request->ajax()){
 
             foreach ( $request->asistio as $key => $val){
@@ -114,12 +101,38 @@ class AsistenciaController extends Controller
                 StudentCourseSubject::insert($data);
                
             }
-
-        //} 
-        
-        
+        //}     
         return redirect::to('personal/asistencias');
     }
 
+    //Se carga el select con los alumnos asociados a un tutor
+    public function seleccionarAlumnoTutor(Request $request){
+        if($request->ajax()){
+            $alumnos=DB::table('students')
+                  ->join('users', 'users.dni', '=', 'students.dni')
+                  ->join ('student_parent','students.dni','=','student_parent.alumno_id')
+                  ->select('users.dni','users.nombre', 'users.apellido')
+                  ->where('student_parent.padre_id',Auth::user()->dni)
+                  ->distinct()
+                  ->get();
+
+            return response()->json($alumnos);
+        }   
+    } 
+
+    //Se carga la tabla de asistencias de los alumnos para los tutores
+    public function cargarAsistenciasTutor(Request $request, $alumno_id){
+
+        if($request->ajax()){
+            $asistencias=DB::table('student_course_subject')
+            ->join('subjects','subjects.id','=','student_course_subject.materia_id')
+            ->select('student_course_subject.fecha','subjects.titulo','subjects.dia_cursada','subjects.hora_cursada','student_course_subject.asiste','student_course_subject.firma')
+            ->where('student_course_subject.alumno_id',$alumno_id)
+            ->distinct()
+            ->get();
+
+            return response()->json($asistencias);
+        }   
+    } 
 
 }

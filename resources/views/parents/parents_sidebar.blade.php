@@ -84,7 +84,7 @@
                     </ul>
                 </li> 
                 --}}
-                <li><a href="{!!URL::to('/tutor/firmar')!!}"><i class='icon-pencil-3'></i><span>Mensajes a firmar</span></a></li>
+                <li><a href="{!!URL::to('/tutor/noFirmados')!!}"><i class='icon-pencil-3'></i><span>Mensajes a firmar</span></a></li>
                 <li class='has_sub'><a href='javascript:void(0);'><i class='icon-chart-line'></i><span>Comportamiento</span> <span class="pull-right"><i class="fa fa-angle-down"></i></span></a>
                     <ul>
                         <li><a href="{!!URL::to('/tutor/comportamiento/distinciones')!!}"><span>Distinciones</span></a></li>

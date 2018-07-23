@@ -35,12 +35,14 @@
     transition: opacity 1s;
     }
     .carousel .one {
-    background: url({{asset('img/bg1.jpg')}});
-    background-size: cover;
-    -moz-background-size: cover;
+    background: url({{asset('img/schoolPattern.jpg')}});
+    background-repeat: repeat;
+    background-size: auto 300px;
+    -webkit-filter: grayscale(80%);
+    filter: grayscale(80%);
     }
-    .carousel .two {
-    background: url({{asset('img/bg2.jpg')}});
+/*    .carousel .two {
+    background: url({{asset('img/premio1.jpg')}});
     background-size: cover;
     -moz-background-size: cover;
     }
@@ -48,11 +50,19 @@
     background: url({{asset('img/bg3.jpg')}});
     background-size: cover;
     -moz-background-size: cover;
-    }
+    }*/
     .carousel .active.left {
     left:0;
     opacity:0;
     z-index:2;
+    }
+
+    .login-wrap {
+          padding: 20px 40px !important;
+          background: rgb(255,255,255) !important;
+          -webkit-box-shadow: 5px 4px 17px -4px rgba(0,0,0,0.75);
+          -moz-box-shadow: 5px 4px 17px -4px rgba(0,0,0,0.75);
+          box-shadow: 5px 4px 17px -4px rgba(0,0,0,0.75);
     }
     </style>
   </head>
@@ -90,30 +100,21 @@
                 </span>
                 @endif
               </div>
-              <div class="form-group">
-                <div class="col-md-6 col-md-offset-4">
-                  <div class="checkbox">
-                    <label>
-                      <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Recordarme
-                    </label>
-                  </div>
-                </div>
-              </div>
               <div class="row">
-                <div class="col-sm-12">
+
                   <button type="submit" class="btn btn-success btn-block">
                   Iniciar
                   </button>
 
-                </div>
+
                 <div class="col-sm-6">
                   <a class="btn btn-link" href="{{ route('password.request') }}">
                     ¿Olvidó su contraseña?
                   </a>
                 </div>
+
               </div>
           </form>
-		  				  <a href="registrar">Registrarse</a>
 
         </div>
       </div>
@@ -122,16 +123,15 @@
     <div class="md-overlay"></div>
     <!-- End of eoverlay modal -->
     
-    <script>
+ <!--   <script>
     var resizefunc = [];
     </script>
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="{{asset('assets/jquery/jquery-3.2.1.min.js')}}"></script>
     <script src="{{asset('assets/bootstrap/js/bootstrap.min.js')}}"></script>
     <script type="text/javascript">
     $(document).ready(function() {
     $('.carousel').carousel({interval: 4000});
     });
-    </script>
+    </script>-->
   </body>
 </html>

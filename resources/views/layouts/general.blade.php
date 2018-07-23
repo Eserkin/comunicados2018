@@ -117,8 +117,10 @@
 	<script src="{{asset('assets/bootstrap-bootbox/bootbox.min.js')}}"></script>
 	<script src="{{asset('assets/jquery-slimscroll/jquery.slimscroll.js')}}"></script>
 	<script src="{{asset('assets/jquery-sparkline/jquery-sparkline.js')}}"></script>
+	
 	<script src="{{asset('assets/nifty-modal/js/classie.js')}}"></script>
 	<script src="{{asset('assets/nifty-modal/js/modalEffects.js')}}"></script>
+
 	<script src="{{asset('assets/sortable/sortable.min.js')}}"></script>
 	<script src="{{asset('assets/bootstrap-fileinput/bootstrap.file-input.js')}}"></script>
 	<script src="{{asset('assets/bootstrap-select/bootstrap-select.min.js')}}"></script>
