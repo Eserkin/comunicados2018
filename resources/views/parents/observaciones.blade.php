@@ -20,13 +20,16 @@
   </div>
 
 @if(count($hijos)>1)
-<label for="email">Filtar por alumno:</label>
-  <select class="form-control" name="seleccionarAlumno" id="seleccionarAlumno">
-    <option value="all">Todos los alumnos</option>
-    @foreach($hijos as $hijo)
-      <option value="{{$hijo->alumno_id}}">{{$hijo->nombre}}</option>
-    @endforeach
-  </select>
+  @foreach($hijos as $hijo)
+        <button class="buttonAlumno btn btn-blue-3" onclick="verInfoHijo({{$hijo->alumno_id}})">
+          <div class="col-md-6 foto">
+          <img src="{{URL::asset($hijo->foto_url)}}">
+          </div>
+          <div class="col-md-6 datos" >
+          <b>{{$hijo->apellido}},{{$hijo->nombre}}</b> <br>{{$hijo->grado}} año <br> Turno: {{$hijo->turno}}
+          </div>
+        </button>
+  @endforeach
 @endif
 
 <br><br>
@@ -49,7 +52,6 @@
                 <th>Motivo</th>
                 <th>Registrada por.</th>
                 @if((Auth::user()->tipo)=="tutor")
-                <th>Alumno</th>
                 <th>Firma del tutor</th>
                 @endif
               </tr>
@@ -60,16 +62,13 @@
                 <td>{{$observacion->created_at}}</td>
                 <td>{{$observacion->mensaje}}</td>
                 <td>{{$observacion->nombre}},{{$observacion->apellido}}</td>
-                <td>{{$observacion->recibe_dni}}</td>
-                @if((Auth::user()->tipo)=="tutor")
                 <td>
                   @if(($observacion->fue_firmado)==1)
-                  <span class="label label-success">Firmado</span>
-                  @elseif(($observacion->fue_firmado)==0)
-                  <span class="label label-warning">Por firmar</span>
+                    <span class="label label-success">Firmado</span>
+                    @elseif(($observacion->fue_firmado)==0)
+                    <a data-modal="md-fade-in-scale-up" class="btn btn-danger btn-sm md-trigger" id="popUpFirma"  onclick="FunctionBTN({{$observacion->id}})">Firmar Observación</a>
                   @endif
                 </td>
-                @endif
               </tr>
               @endforeach
             </tbody>
@@ -83,26 +82,61 @@
   </div>
 </div>
 
+<!--  Se incluye el pop up para firmar-->
+@include('parents.botonFirmar')
+
+@include('layouts.footer')
+
 @endsection
 
 @section ('javascript')
   <script>
+  
+    function verInfoHijo($id) {
+        $('.fila').hide();
+        $('.fila').each(function(i, el){
+            if($(el).attr('data-type') == $id) {
+                 $(el).show();
+             }
+        })
+    }
 
-    $("#seleccionarAlumno").change(function() {
-    var filterValue = $(this).val();
-    var fila = $('.fila'); 
-      
-    fila.hide()
-    fila.each(function(i, el) {
-         if($(el).attr('data-type') == filterValue) {
-             $(el).show();
-         }
-    })
+    //Se cargan los campos ocultos del popup con el ID del elemento seleccionado
+    function FunctionBTN($id) {
+        $("#current_msj_id").val($id);
 
-    if ("all" == filterValue) {
-        fila.show();
-      }
-     
-    });
+        var $coord1=  $.trim($("#Coord1").text());
+        $("#lblCoord1").val($coord1);
+
+        var $coord2=  $.trim($("#Coord2").text());
+        $("#lblCoord2").val($coord2);
+    }
+
+    function FunctionFirmar(event){
+      event.preventDefault();
+      var url="/validarFirma/";
+      var data= $('#formCoordenadas').serialize();
+      $.post(url,data,function(result){
+          if(result){
+            $('#msgFail').fadeOut();
+            $('#msgSuccess').fadeIn();
+            setTimeout(function() {
+                 $(".md-fade-in-scale-up").removeClass("md-show");
+              }, 3000);    
+            setTimeout(function() {
+                 window.location.reload();
+              }, 200);
+          }else{
+            $('#msgFail').fadeIn();   
+            setTimeout(function() {
+                 $(".md-fade-in-scale-up").removeClass("md-show");
+              }, 1000);
+            setTimeout(function() {
+                 window.location.reload();
+              }, 200);     
+          }
+        })
+    }
+
   </script>
 @endsection

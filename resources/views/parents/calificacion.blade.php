@@ -23,763 +23,88 @@
   </div>
     
     <br>
-    <select class="form-control" name="seleccionarAlumno" id="seleccionarAlumno">
-    <option value="0">Seleccione el alumno</option>
-          <option value="20456732">Jaimito</option>
-          <option value="32267202">Benedict</option>
-    </select>
+    @if(count($hijos)>1)
+      @foreach($hijos as $hijo)
+            <button class="buttonAlumno btn btn-blue-3" onclick="verInfoHijo({{$hijo->alumno_id}})">
+              <div class="col-md-6 foto">
+              <img src="{{URL::asset($hijo->foto_url)}}">
+              </div>
+              <div class="col-md-6 datos" >
+              <b>{{$hijo->apellido}},{{$hijo->nombre}}</b> <br>{{$hijo->grado}} año <br> Turno: {{$hijo->turno}}
+              </div>
+            </button>
+      @endforeach
+    @endif
     <br><br>
-    <ul id="demo1" class="nav nav-tabs">
-        <li class="active">
-            <a href="#matematica" data-toggle="tab" aria-expanded="true">Matemática</a>
-        </li>
-        <li class="">
-            <a href="#filosofia" data-toggle="tab" aria-expanded="false">Filosofía</a>
-        </li>
-        <li class="">
-            <a href="#lengua" data-toggle="tab" aria-expanded="false">Lengua y Literatura</a>
-        </li>
-        <li class="">
-            <a href="#informatica" data-toggle="tab" aria-expanded="false">Informática</a>
-        </li>
-        <!-- / .dropdown -->
-    </ul>
+    <div id="tabCalificaiones">
 
-    <div class="tab-content">
-        <div class="tab-pane fade active in" id="matematica">
-            <br>
-            <div class="text-center"><h3>Primer Periodo</h3></div><br>
-            <div class="table-responsive">
-                  <table data-sortable="" class="table" data-sortable-initialized="true">
-                    <thead>
-                      <tr>
-                        <th>Fecha</th>
-                        <th>Temas</th>
-                        <th>Calificación</th>
-                        <th>Estado</th>
-                        <th>Firma del Tutor</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>
-                            02-03-2018
-                        </td>
-                        <td>Angulos, Vectores</td>
-                        <td>7 (siete)</td>
-                        <td>
-                          <span class="label label-success">Aprobado</span>
-                        </td>
-                        <td>
-                          <span class="label label-success">Firmado</span>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          20-04-2018
-                        </td>
-                        <td>Matrices</td>
-                        <td>6 (seis)</td>
-                        <td>
-                          <span class="label label-danger">Desaprobado</span>
-                        </td>
-                        <td>
-                          <span class="label label-success">Firmado</span>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          13-05-2018
-                        </td>
-                        <td>Figuras geométricas</td>
-                        <td>10 (diez)</td>
-                        <td>
-                          <span class="label label-success">Aprobado</span>
-                        </td>
-                        <td>
-                          <button data-modal="md-fade-in-scale-up" class="btn btn-warning btn-sm md-trigger">Firma Pendiente</button>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-            </div>
-            <br><br>
-            <div class="text-center"><h3>Segundo Periodo</h3></div><br>
-            <div class="table-responsive">
-                  <table data-sortable="" class="table" data-sortable-initialized="true">
-                    <thead>
-                      <tr>
-                        <th>Fecha</th>
-                        <th>Temas</th>
-                        <th>Calificación</th>
-                        <th>Estado</th>
-                        <th>Firma del Tutor</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>
-                            02-03-2018
-                        </td>
-                        <td>Angulos, Vectores</td>
-                        <td>7 (siete)</td>
-                        <td>
-                          <span class="label label-success">Aprobado</span>
-                        </td>
-                        <td>
-                          <span class="label label-success">Firmado</span>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          20-04-2018
-                        </td>
-                        <td>Matrices</td>
-                        <td>6 (seis)</td>
-                        <td>
-                          <span class="label label-danger">Desaprobado</span>
-                        </td>
-                        <td>
-                          <span class="label label-success">Firmado</span>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          13-05-2018
-                        </td>
-                        <td>Figuras geométricas</td>
-                        <td>10 (diez)</td>
-                        <td>
-                          <span class="label label-success">Aprobado</span>
-                        </td>
-                        <td>
-                          <button data-modal="md-fade-in-scale-up" class="btn btn-warning btn-sm md-trigger">Firma Pendiente</button>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-            </div>
-            <br><br>
-            <div class="text-center"><h3>Tercer Periodo</h3></div><br>
-            <div class="table-responsive">
-                  <table data-sortable="" class="table" data-sortable-initialized="true">
-                    <thead>
-                      <tr>
-                        <th>Fecha</th>
-                        <th>Temas</th>
-                        <th>Calificación</th>
-                        <th>Estado</th>
-                        <th>Firma del Tutor</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>
-                            02-03-2018
-                        </td>
-                        <td>Angulos, Vectores</td>
-                        <td>7 (siete)</td>
-                        <td>
-                          <span class="label label-success">Aprobado</span>
-                        </td>
-                        <td>
-                          <span class="label label-success">Firmado</span>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          20-04-2018
-                        </td>
-                        <td>Matrices</td>
-                        <td>6 (seis)</td>
-                        <td>
-                          <span class="label label-danger">Desaprobado</span>
-                        </td>
-                        <td>
-                          <span class="label label-success">Firmado</span>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          13-05-2018
-                        </td>
-                        <td>Figuras geométricas</td>
-                        <td>10 (diez)</td>
-                        <td>
-                          <span class="label label-success">Aprobado</span>
-                        </td>
-                        <td>
-                          <button data-modal="md-fade-in-scale-up" class="btn btn-warning btn-sm md-trigger">Firma Pendiente</button>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-            </div>
-        </div>
-        <!-- / .tab-pane -->
-        <div class="tab-pane fade " id="filosofia">
-            <br>
-            <div class="text-center"><h3>Primer Periodo</h3></div><br>
-            <div class="table-responsive">
-                  <table data-sortable="" class="table" data-sortable-initialized="true">
-                    <thead>
-                      <tr>
-                        <th>Fecha</th>
-                        <th>Temas</th>
-                        <th>Calificación</th>
-                        <th>Estado</th>
-                        <th>Firma del Tutor</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>
-                            02-03-2018
-                        </td>
-                        <td>Angulos, Vectores</td>
-                        <td>7 (siete)</td>
-                        <td>
-                          <span class="label label-success">Aprobado</span>
-                        </td>
-                        <td>
-                          <span class="label label-success">Firmado</span>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          20-04-2018
-                        </td>
-                        <td>Matrices</td>
-                        <td>6 (seis)</td>
-                        <td>
-                          <span class="label label-danger">Desaprobado</span>
-                        </td>
-                        <td>
-                          <span class="label label-success">Firmado</span>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          13-05-2018
-                        </td>
-                        <td>Figuras geométricas</td>
-                        <td>10 (diez)</td>
-                        <td>
-                          <span class="label label-success">Aprobado</span>
-                        </td>
-                        <td>
-                          <button data-modal="md-fade-in-scale-up" class="btn btn-warning btn-sm md-trigger">Firma Pendiente</button>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-            </div>
-            <br><br>
-            <div class="text-center"><h3>Segundo Periodo</h3></div><br>
-            <div class="table-responsive">
-                  <table data-sortable="" class="table" data-sortable-initialized="true">
-                    <thead>
-                      <tr>
-                        <th>Fecha</th>
-                        <th>Temas</th>
-                        <th>Calificación</th>
-                        <th>Estado</th>
-                        <th>Firma del Tutor</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>
-                            02-03-2018
-                        </td>
-                        <td>Angulos, Vectores</td>
-                        <td>7 (siete)</td>
-                        <td>
-                          <span class="label label-success">Aprobado</span>
-                        </td>
-                        <td>
-                          <span class="label label-success">Firmado</span>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          20-04-2018
-                        </td>
-                        <td>Matrices</td>
-                        <td>6 (seis)</td>
-                        <td>
-                          <span class="label label-danger">Desaprobado</span>
-                        </td>
-                        <td>
-                          <span class="label label-success">Firmado</span>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          13-05-2018
-                        </td>
-                        <td>Figuras geométricas</td>
-                        <td>10 (diez)</td>
-                        <td>
-                          <span class="label label-success">Aprobado</span>
-                        </td>
-                        <td>
-                          <button data-modal="md-fade-in-scale-up" class="btn btn-warning btn-sm md-trigger">Firma Pendiente</button>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-            </div>
-            <br><br>
-            <div class="text-center"><h3>Tercer Periodo</h3></div><br>
-            <div class="table-responsive">
-                  <table data-sortable="" class="table" data-sortable-initialized="true">
-                    <thead>
-                      <tr>
-                        <th>Fecha</th>
-                        <th>Temas</th>
-                        <th>Calificación</th>
-                        <th>Estado</th>
-                        <th>Firma del Tutor</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>
-                            02-03-2018
-                        </td>
-                        <td>Angulos, Vectores</td>
-                        <td>7 (siete)</td>
-                        <td>
-                          <span class="label label-success">Aprobado</span>
-                        </td>
-                        <td>
-                          <span class="label label-success">Firmado</span>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          20-04-2018
-                        </td>
-                        <td>Matrices</td>
-                        <td>6 (seis)</td>
-                        <td>
-                          <span class="label label-danger">Desaprobado</span>
-                        </td>
-                        <td>
-                          <span class="label label-success">Firmado</span>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          13-05-2018
-                        </td>
-                        <td>Figuras geométricas</td>
-                        <td>10 (diez)</td>
-                        <td>
-                          <span class="label label-success">Aprobado</span>
-                        </td>
-                        <td>
-                          <button data-modal="md-fade-in-scale-up" class="btn btn-warning btn-sm md-trigger">Firma Pendiente</button>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-            </div>
-        </div>
-        <!-- / .tab-pane -->
-        <div class="tab-pane fade" id="lengua">
-            <br>
-            <div class="text-center"><h3>Primer Periodo</h3></div><br>
-            <div class="table-responsive">
-                  <table data-sortable="" class="table" data-sortable-initialized="true">
-                    <thead>
-                      <tr>
-                        <th>Fecha</th>
-                        <th>Temas</th>
-                        <th>Calificación</th>
-                        <th>Estado</th>
-                        <th>Firma del Tutor</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>
-                            02-03-2018
-                        </td>
-                        <td>Angulos, Vectores</td>
-                        <td>7 (siete)</td>
-                        <td>
-                          <span class="label label-success">Aprobado</span>
-                        </td>
-                        <td>
-                          <span class="label label-success">Firmado</span>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          20-04-2018
-                        </td>
-                        <td>Matrices</td>
-                        <td>6 (seis)</td>
-                        <td>
-                          <span class="label label-danger">Desaprobado</span>
-                        </td>
-                        <td>
-                          <span class="label label-success">Firmado</span>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          13-05-2018
-                        </td>
-                        <td>Figuras geométricas</td>
-                        <td>10 (diez)</td>
-                        <td>
-                          <span class="label label-success">Aprobado</span>
-                        </td>
-                        <td>
-                          <button data-modal="md-fade-in-scale-up" class="btn btn-warning btn-sm md-trigger">Firma Pendiente</button>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-            </div>
-            <br><br>
-            <div class="text-center"><h3>Segundo Periodo</h3></div><br>
-            <div class="table-responsive">
-                  <table data-sortable="" class="table" data-sortable-initialized="true">
-                    <thead>
-                      <tr>
-                        <th>Fecha</th>
-                        <th>Temas</th>
-                        <th>Calificación</th>
-                        <th>Estado</th>
-                        <th>Firma del Tutor</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>
-                            02-03-2018
-                        </td>
-                        <td>Angulos, Vectores</td>
-                        <td>7 (siete)</td>
-                        <td>
-                          <span class="label label-success">Aprobado</span>
-                        </td>
-                        <td>
-                          <span class="label label-success">Firmado</span>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          20-04-2018
-                        </td>
-                        <td>Matrices</td>
-                        <td>6 (seis)</td>
-                        <td>
-                          <span class="label label-danger">Desaprobado</span>
-                        </td>
-                        <td>
-                          <span class="label label-success">Firmado</span>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          13-05-2018
-                        </td>
-                        <td>Figuras geométricas</td>
-                        <td>10 (diez)</td>
-                        <td>
-                          <span class="label label-success">Aprobado</span>
-                        </td>
-                        <td>
-                          <button data-modal="md-fade-in-scale-up" class="btn btn-warning btn-sm md-trigger">Firma Pendiente</button>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-            </div>
-            <br><br>
-            <div class="text-center"><h3>Tercer Periodo</h3></div><br>
-            <div class="table-responsive">
-                  <table data-sortable="" class="table" data-sortable-initialized="true">
-                    <thead>
-                      <tr>
-                        <th>Fecha</th>
-                        <th>Temas</th>
-                        <th>Calificación</th>
-                        <th>Estado</th>
-                        <th>Firma del Tutor</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>
-                            02-03-2018
-                        </td>
-                        <td>Angulos, Vectores</td>
-                        <td>7 (siete)</td>
-                        <td>
-                          <span class="label label-success">Aprobado</span>
-                        </td>
-                        <td>
-                          <span class="label label-success">Firmado</span>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          20-04-2018
-                        </td>
-                        <td>Matrices</td>
-                        <td>6 (seis)</td>
-                        <td>
-                          <span class="label label-danger">Desaprobado</span>
-                        </td>
-                        <td>
-                          <span class="label label-success">Firmado</span>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          13-05-2018
-                        </td>
-                        <td>Figuras geométricas</td>
-                        <td>10 (diez)</td>
-                        <td>
-                          <span class="label label-success">Aprobado</span>
-                        </td>
-                        <td>
-                          <button data-modal="md-fade-in-scale-up" class="btn btn-warning btn-sm md-trigger">Firma Pendiente</button>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-            </div>
-        </div>
-        <!-- / .tab-pane -->
-        <div class="tab-pane fade" id="informatica">
-            <br>
-            <div class="text-center"><h3>Primer Periodo</h3></div><br>
-            <div class="table-responsive">
-                  <table data-sortable="" class="table" data-sortable-initialized="true">
-                    <thead>
-                      <tr>
-                        <th>Fecha</th>
-                        <th>Temas</th>
-                        <th>Calificación</th>
-                        <th>Estado</th>
-                        <th>Firma del Tutor</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>
-                            02-03-2018
-                        </td>
-                        <td>Angulos, Vectores</td>
-                        <td>7 (siete)</td>
-                        <td>
-                          <span class="label label-success">Aprobado</span>
-                        </td>
-                        <td>
-                          <span class="label label-success">Firmado</span>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          20-04-2018
-                        </td>
-                        <td>Matrices</td>
-                        <td>6 (seis)</td>
-                        <td>
-                          <span class="label label-danger">Desaprobado</span>
-                        </td>
-                        <td>
-                          <span class="label label-success">Firmado</span>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          13-05-2018
-                        </td>
-                        <td>Figuras geométricas</td>
-                        <td>10 (diez)</td>
-                        <td>
-                          <span class="label label-success">Aprobado</span>
-                        </td>
-                        <td>
-                          <button data-modal="md-fade-in-scale-up" class="btn btn-warning btn-sm md-trigger">Firma Pendiente</button>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-            </div>
-            <br><br>
-            <div class="text-center"><h3>Segundo Periodo</h3></div><br>
-            <div class="table-responsive">
-                  <table data-sortable="" class="table" data-sortable-initialized="true">
-                    <thead>
-                      <tr>
-                        <th>Fecha</th>
-                        <th>Temas</th>
-                        <th>Calificación</th>
-                        <th>Estado</th>
-                        <th>Firma del Tutor</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>
-                            02-03-2018
-                        </td>
-                        <td>Angulos, Vectores</td>
-                        <td>7 (siete)</td>
-                        <td>
-                          <span class="label label-success">Aprobado</span>
-                        </td>
-                        <td>
-                          <span class="label label-success">Firmado</span>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          20-04-2018
-                        </td>
-                        <td>Matrices</td>
-                        <td>6 (seis)</td>
-                        <td>
-                          <span class="label label-danger">Desaprobado</span>
-                        </td>
-                        <td>
-                          <span class="label label-success">Firmado</span>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          13-05-2018
-                        </td>
-                        <td>Figuras geométricas</td>
-                        <td>10 (diez)</td>
-                        <td>
-                          <span class="label label-success">Aprobado</span>
-                        </td>
-                        <td>
-                          <button data-modal="md-fade-in-scale-up" class="btn btn-warning btn-sm md-trigger">Firma Pendiente</button>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-            </div>
-            <br><br>
-            <div class="text-center"><h3>Tercer Periodo</h3></div><br>
-            <div class="table-responsive">
-                  <table data-sortable="" class="table" data-sortable-initialized="true">
-                    <thead>
-                      <tr>
-                        <th>Fecha</th>
-                        <th>Temas</th>
-                        <th>Calificación</th>
-                        <th>Estado</th>
-                        <th>Firma del Tutor</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>
-                            02-03-2018
-                        </td>
-                        <td>Angulos, Vectores</td>
-                        <td>7 (siete)</td>
-                        <td>
-                          <span class="label label-success">Aprobado</span>
-                        </td>
-                        <td>
-                          <span class="label label-success">Firmado</span>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          20-04-2018
-                        </td>
-                        <td>Matrices</td>
-                        <td>6 (seis)</td>
-                        <td>
-                          <span class="label label-danger">Desaprobado</span>
-                        </td>
-                        <td>
-                          <span class="label label-success">Firmado</span>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          13-05-2018
-                        </td>
-                        <td>Figuras geométricas</td>
-                        <td>10 (diez)</td>
-                        <td>
-                          <span class="label label-success">Aprobado</span>
-                        </td>
-                        <td>
-                          <button data-modal="md-fade-in-scale-up" class="btn btn-warning btn-sm md-trigger">Firma Pendiente</button>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-            </div>
-        </div>
-        <!-- / .tab-pane -->
+      <ul id="demo1" class="nav nav-tabs">
+        {{--         
+          <li class="active">
+              <a href="#matematica" data-toggle="tab" aria-expanded="true">Matemática</a>
+          </li>
+          <li class="">
+              <a href="#filosofia" data-toggle="tab" aria-expanded="false">Filosofía</a>
+          </li>
+        --}}
+      </ul>
+
+      <div id="calificaciones" class="tab-content">
+      </div>
+      <!-- / .tab-content -->
+
     </div>
-    <!-- / .tab-content -->
 
-    <!-- Contenido del Modal  -->
-   
 
-    <div class="md-modal md-fade-in-scale-up" id="md-fade-in-scale-up">
-      <div class="md-content">
-        <h3 style="padding-bottom:0px;">¿Esta seguro que deséa firmar el mensaje?</h3>
-        <div>
-          <p style=" padding-top: 0px;margin-bottom:20px; text-align:center;">Ingrese las coordenadas de su trajeta TOKEN</p>
-          <div class="form-group">
-            <label class="col-sm-2 control-label">
-              @php
-                echo chr(rand(ord("A"), ord("B")));
-                echo rand(1, 9);
-              @endphp  :
-            </label>
-            <div class="col-sm-4">
-              <input type="text" class="form-control">
-            </div>
-            <label class="col-sm-2 control-label">
-              @php
-                echo chr(rand(ord("A"), ord("B")));
-                echo rand(1, 9);
-              @endphp  :
-            </label>
-            <div class="col-sm-4">
-              <input type="text" class="form-control">
-            </div>
-          </div>
-
-          <div class="form-group" style="margin-top:20px; position:relative;top:20px; text-align:center">
-            <button class="btn btn-danger md-close">Cerrar</button>
-            <button class="btn btn-success ">Firmar Mensaje</button>
-          </div>
-        </div>
-      </div><!-- End div .md-content -->
-    </div><!-- End div .md-modal .md-fade-in-scale-up -->
 
 </div>
  
-<!-- the overlay modal element -->
-  <div class="md-overlay"></div>
-  <!-- End of eoverlay modal -->
+
 @include('layouts.footer') 
 
 @endsection 
 
 
 @section ('javascript') 
+<script type="text/javascript">
+  function verInfoHijo(alumno_id) {
+        
+        $('#tabCalificaiones').hide();
+        $.get('/calificaciones/vistaTutor/materias/' +alumno_id+ "", function (response, state) {
 
+          $('#tabCalificaiones').show();
+          $("#demo1").empty();
+          for(i = 0; i < response.length; i++)
+          {
+            if(i==0){$first="active";}else{$first=null;}
+            $("#demo1").append("<li class="+$first+"><a href=\"#"+response[i].titulo+"\" data-toggle=\"\" aria-expanded=\"true\">"+response[i].titulo+"</a></li>");
+          }
+
+          //alert(response[1].titulo);
+          //for (i = 0; i < response.length; i++) {}  
+        });
+
+        $.get('/calificaciones/vistaTutor/' +alumno_id+ "", function (response, state) {
+          for(i = 0; i < response.length; i++)
+          {
+            if(i==0){$activo="active in";}else{$activo=null;}
+
+            if(response[i].estado_aprobacion="0"){
+              $estado="<span class=\"label label-danger\">Desaprobado</span>"
+            }else{
+              $estado="<span class=\"label label-success\">Aprobado</span>"
+            }
+
+            $("#calificaiones").append("<div class=\"tab-pane fade " + $activo +" id="+response[i].titulo+"><br><div class=\"table-responsive\"><table data-sortable=\"\" class=\"table\" data-sortable-initialized=\"true\"><thead><tr><th>Fecha</th><th>Materia</th><th>Temas</th><th>Calificación</th><th>Estado</th></tr></thead><tbody><tr><td>"+response[i].titulo+"</td><td>"+ response[i].materia+"</td><td>"+ response[i].temas+"</td><td>"+ response[i].calificaion+"</td><td>"+$estado+"</td></tr></tbody></table></div>");
+          }
+            
+        });
+
+
+
+
+                    
+
+    }
+</script>
 @endsection

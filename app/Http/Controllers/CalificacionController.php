@@ -54,13 +54,12 @@ class CalificacionController extends Controller
 
     public function verCalificacionAlumno()
     {
-        $materias=DB::table('student_evaluation')
-        ->join('evaluations','evaluations.id','=','student_evaluation.evaluacion_id')
-        ->join('subjects','subjects.id','=','evaluations.materia_id')
-        ->select ('subjects.titulo')
-        ->where ('alumno_id',Auth::user()->dni)
-        ->distinct()
-        ->get();
+        $materias=DB::table('student_course_subject')
+                ->join('subjects','subjects.id','=','student_course_subject.materia_id')
+                ->select ('subjects.titulo')
+                ->where ('student_course_subject.alumno_id',Auth::user()->dni)
+                ->distinct()
+                ->get();
 
         $primerPeriodo=DB::table('student_evaluation')
         ->join('evaluations','evaluations.id','=','student_evaluation.evaluacion_id')
@@ -89,10 +88,59 @@ class CalificacionController extends Controller
         return view ('students/calificacion', compact('primerPeriodo','segundoPeriodo','tercerPeriodo','materias'));
     }
 
+
     public function verCalificacionTutor()
     {
-        return view('\tutor/calificacion');
+        $hijos =DB::table('student_parent')
+                ->join('students', 'students.dni', '=', 'student_parent.alumno_id')
+                ->join('users', 'users.dni', '=', 'students.dni')
+                ->join('student_course_subject', 'student_course_subject.alumno_id','=','students.dni')
+                ->join('courses', 'courses.id', '=','student_course_subject.curso_id')
+                ->select('student_parent.alumno_id','students.estado','users.nombre','users.apellido','users.foto_url','courses.grado', 'courses.nivel','courses.turno' )
+                ->where('student_parent.padre_id',Auth::user()->dni)
+                ->distinct('alumno_id')
+                ->get();
+
+        return view('\parents/calificacion', compact('hijos') );
     }
+
+    public function mostrarMateriasDelAlumnoTutor(Request $request, $alumnoId)
+    {
+        if($request->ajax()){
+
+            $materias=DB::table('student_course_subject')
+                ->join('subjects','subjects.id','=','student_course_subject.materia_id')
+                ->select ('subjects.titulo')
+                ->where ('student_course_subject.alumno_id',$alumnoId)
+                ->distinct()
+                ->get();
+
+
+            return response()->json($materias);
+
+            //return response()->json(array('materias'=>$materias, 'primerPeriodo'=>$primerPeriodo, 'segundoPeriodo'=>$segundoPeriodo,'tercerPeriodo'=>$tercerPeriodo ),200 );
+        }
+    }
+
+    public function mostrarCalificacionesATutor(Request $request, $alumnoId)
+    {
+        if($request->ajax()){
+
+            $calificaciones=DB::table('student_evaluation')
+            ->join('evaluations','evaluations.id','=','student_evaluation.evaluacion_id')
+            ->join('subjects','subjects.id','=','evaluations.materia_id')
+            ->select ('subjects.titulo','student_evaluation.alumno_id as alumno', 'student_evaluation.calificacion as calificacion','student_evaluation.estado_aprobacion','student_evaluation.fecha as fecha','evaluations.periodo', 'evaluations.temas', 'subjects.titulo as materia')
+            ->where ('alumno_id',$alumnoId)
+            ->distinct('subjects.titulo')
+            ->get();
+
+
+            return response()->json($calificaciones);
+
+            //return response()->json(array('materias'=>$materias, 'primerPeriodo'=>$primerPeriodo, 'segundoPeriodo'=>$segundoPeriodo,'tercerPeriodo'=>$tercerPeriodo ),200 );
+        }
+    }
+
 
     public function subirCalificacion()
     {

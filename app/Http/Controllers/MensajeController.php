@@ -120,7 +120,7 @@ class MensajeController extends Controller
         $sinFirmar =DB::table('messages')
                 ->join('message_recipient', 'messages.id', '=', 'message_recipient.mensaje_id')
                 ->join('messages_types', 'messages.mensaje_tipo_id', '=', 'messages_types.id')
-                ->select('messages.id','messages.titulo','messages.asunto','messages.mensaje','messages.adjunto','messages.created_at','messages_types.id as tipo')
+                ->select('messages.id','message_recipient.id as msgID','messages.titulo','messages.asunto','messages.mensaje','messages.adjunto','messages.created_at','messages_types.id as tipo')
                 ->where('message_recipient.recibe_dni',Auth::user()->dni)
                 ->where('messages_types.requiere_firma?',1)
                 ->where('message_recipient.fue_firmado',0)
@@ -152,8 +152,10 @@ class MensajeController extends Controller
                 $estado=true;
                 //En el caso de que las coordenadas sean correctas se actualiza el mensaje en la BD a firmado
                 DB::table('message_recipient')
-                ->where('mensaje_id', $request->current_msj_id)
-                ->where('recibe_dni', Auth::user()->dni)
+                ->join('messages','messages.id','=','message_recipient.mensaje_id')
+                ->join('messages_types','messages_types.id','=','messages.mensaje_tipo_id')
+                ->where('message_recipient.id', $request->current_msj_id)
+                //->where('recibe_dni', Auth::user()->dni)
                 ->update(['fue_firmado' => 1]);
             }else{
 

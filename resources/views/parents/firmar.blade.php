@@ -24,16 +24,6 @@
   </div>
 </div>
 
-    <div id="msgSuccess" class=" alert alert-success alert-dismissable " style="display:none;">
-      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-        <strong>El Mensaje fue firmado</strong>
-    </div>
-
-    <div id="msgFail" class=" alert alert-danger alert-dismissable " style="display:none;">
-      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-        <strong>Coordenadas incorrectas. El mensaje no se pudo firmar</strong>
-    </div>
-
 @if(count($sinFirmar)>=1)
 <div class="col-sm-12 portlets">
 @foreach($sinFirmar as $sinFirmarS)
@@ -68,7 +58,7 @@
     </div>
     <div class="widget-footer">
       <div class="pull-right">
-        <a data-modal="md-fade-in-scale-up" class="btn btn-danger btn-sm md-trigger" id="popUpFirma"  onclick="FunctionBTN({{$sinFirmarS->id}})">Firmar Mensaje</a>
+        <a data-modal="md-fade-in-scale-up" class="btn btn-danger btn-sm md-trigger" id="popUpFirma"  onclick="FunctionBTN({{$sinFirmarS->msgID}})">Firmar Mensaje</a>
       </div>
     </div>
   </div>
@@ -110,14 +100,21 @@ function FunctionFirmar(event){
     $.post(url,data,function(result){
         if(result){
           $('#msgFail').fadeOut();
-          $(".md-fade-in-scale-up").removeClass("md-show");
           $('#msgSuccess').fadeIn();
-            setTimeout(function() {
+          setTimeout(function() {
+               $(".md-fade-in-scale-up").removeClass("md-show");
+            }, 3000);    
+          setTimeout(function() {
                window.location.reload();
-            }, 1000);
+            }, 200);
         }else{
-          $(".md-fade-in-scale-up").removeClass("md-show");
-          $('#msgFail').fadeIn();
+          $('#msgFail').fadeIn();   
+          setTimeout(function() {
+               $(".md-fade-in-scale-up").removeClass("md-show");
+            }, 1000);
+          setTimeout(function() {
+               window.location.reload();
+            }, 200);     
         }
       })
   }

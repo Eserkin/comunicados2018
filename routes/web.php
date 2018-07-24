@@ -79,6 +79,8 @@ Route::prefix('admin')->group(function () {
 Route::get('/asistencias/alumnoSelect', 'AsistenciaController@seleccionarAlumnoTutor');
 Route::get('/asistencias/vistaTutor/{alumno_id}', 'AsistenciaController@cargarAsistenciasTutor');
 
+Route::get('/calificaciones/vistaTutor/materias/{alumno_id}', 'CalificacionController@mostrarMateriasDelAlumnoTutor');
+Route::get('/calificaciones/vistaTutor/{alumno_id}', 'CalificacionController@mostrarCalificacionesATutor');
 Route::post('/validarFirma', 'MensajeController@validarFirma');
 //-----------------
 
@@ -108,6 +110,9 @@ Route::prefix('tutor')->group(function () {
     });
 
     Route::resource('/mensajes', 'MensajeController');
+
+    Route::get('/comportamiento/distinciones', 'CalificacionController@verCalificacionTutor');
+
 
     Route::get('/asistencias',function(){return view ('parents/verAsistencia');});
 

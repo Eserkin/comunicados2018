@@ -40,6 +40,16 @@
 
     </form>
 
+    <div id="msgSuccess" class=" alert alert-success alert-dismissable " style="display:none;">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+        <strong>El Mensaje fue firmado</strong>
+    </div>
+
+    <div id="msgFail" class=" alert alert-danger alert-dismissable " style="display:none;">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+        <strong>Coordenadas incorrectas. El mensaje no se pudo firmar</strong>
+    </div>
+
   </div>
   <!-- End div .md-content -->
 </div>
@@ -54,22 +64,6 @@
             headers: {'X-CSRF-Token': $('meta[name=_token]').attr('content')}
         });
 
-      
-
-/*    $("#btnEnviar").click(function (e){
-      e.preventDefault();
-
-      var url="/validarFirma/";
-      var data= $('form').serialize();
-      $.post(url,data,function(){alert("bien");})
-    });*/
-
   });
-
-
-
-
-
-
 
 </script>

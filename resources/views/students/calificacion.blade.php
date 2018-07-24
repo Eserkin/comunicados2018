@@ -29,7 +29,7 @@
             <a href="#{{$materia->titulo}}" data-toggle="tab" @if ($loop->first) aria-expanded="true" @else aria-expanded="false" @endif 
               >{{$materia->titulo}}</a>
         </li>
-        <!-- / .dropdown -->    
+           
     @endforeach
     </ul>
 
